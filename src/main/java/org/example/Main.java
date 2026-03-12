@@ -5,11 +5,15 @@ import org.example.Classes.CreateTables;
 import org.example.Config.DatabaseConnection;
 
 import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
 import org.example.Classes.Appointment;
 import org.example.Classes.Doctors;
 import org.example.Classes.MedicalRecords;
 import org.example.Classes.Patients;
 import org.example.InterfaceImpl.InsertData;
+import org.example.InterfaceImpl.RetrieveData;
 
 public class Main {
     public static void main(String[] args) {
@@ -26,7 +30,7 @@ public class Main {
 ////        createTables.CreateTablesFun();
 
 
-        InsertData insertData = new InsertData();
+//        InsertData insertData = new InsertData();
 
 
 //                Doctors doctor = new Doctors("Celie", "Nishimwe", "Dentist", "0780000000", "nishimwecelie.com");
@@ -36,12 +40,54 @@ public class Main {
 //                insertData.insertPatient(patient);
 
 //
-                Appointment appointment = new Appointment(1, 1, "2026-03-20 10:30:00", "Scheduled");
-                insertData.insertAppointments(appointment);
+//                Appointment appointment = new Appointment(1, 1, "2026-03-20 10:30:00", "Scheduled");
+//                insertData.insertAppointments(appointment);
+//
+//
+//                MedicalRecords medicalRecord = new MedicalRecords(1,"headCache", "Patient has high fever", 1);
+//                insertData.insertMedicalRecords(medicalRecord);
 
+        RetrieveData retrieve = new RetrieveData();
+        List<Patients> patients = retrieve.getPatientsByDoctor(1);
 
-                MedicalRecords medicalRecord = new MedicalRecords(1,"headCache", "Patient has high fever", 1);
-                insertData.insertMedicalRecords(medicalRecord);
+        for (Patients p : patients) {
+            System.out.println(
+                    p.getFirstName() + " " +
+                            p.getLastName() + " " +
+                            p.getEmail()
+            );
+        }
+
+        List<MedicalRecords> records = retrieve.getMedicalRecordsByPatient(1);
+
+        for (MedicalRecords r : records) {
+            System.out.println(
+                    "Diagnosis: " + r.getDiagnosis() +
+                            " Treatment: " + r.getDetails()
+            );
+        }
+
+        Map<Integer,Integer> appointments = retrieve.getTotalAppointmentsPerDoctor();
+
+        for (Integer doctorId : appointments.keySet()) {
+
+            System.out.println(
+                    "Doctor ID: " + doctorId +
+                            " Total Appointments: " +
+                            appointments.get(doctorId)
+            );
+        }
+
+        Map<String,Integer> doctors = retrieve.getDoctorsAndPatientsCount();
+
+        for (String name : doctors.keySet()) {
+
+            System.out.println(
+                    name + " has " +
+                            doctors.get(name) +
+                            " patients"
+            );
+        }
 
 
     }
