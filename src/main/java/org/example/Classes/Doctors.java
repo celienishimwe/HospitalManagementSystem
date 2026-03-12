@@ -1,5 +1,8 @@
 package org.example.Classes;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class Doctors {
     private String firstName;
     private String lastName;
@@ -55,4 +58,7 @@ public class Doctors {
     public void setEmail(String email) {
         this.email = email;
     }
+    List<Appointment> appointmentList = new LinkedList<>();
+    List<Patients> patients = new LinkedList<>();
+
 }

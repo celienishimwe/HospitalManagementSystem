@@ -44,4 +44,6 @@ public class MedicalRecords {
     public void setDoctorId(int doctorId) {
         this.doctorId = doctorId;
     }
+
+    Patients patient;
 }
