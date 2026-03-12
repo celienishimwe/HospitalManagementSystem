@@ -14,6 +14,7 @@ import org.example.Classes.MedicalRecords;
 import org.example.Classes.Patients;
 import org.example.InterfaceImpl.InsertData;
 import org.example.InterfaceImpl.RetrieveData;
+import org.example.InterfaceImpl.UpdateDeleteData;
 
 public class Main {
     public static void main(String[] args) {
@@ -46,49 +47,50 @@ public class Main {
 //
 //                MedicalRecords medicalRecord = new MedicalRecords(1,"headCache", "Patient has high fever", 1);
 //                insertData.insertMedicalRecords(medicalRecord);
+//
+//        RetrieveData retrieve = new RetrieveData();
+//        List<Patients> patients = retrieve.getPatientsByDoctor(1);
+//
+//        for (Patients p : patients) {
+//            System.out.println(
+//                    p.getFirstName() + " " +
+//                            p.getLastName() + " " +
+//                            p.getEmail()
+//            );
+//        }
+//
+//        List<MedicalRecords> records = retrieve.getMedicalRecordsByPatient(1);
+//
+//        for (MedicalRecords r : records) {
+//            System.out.println(
+//                    "Diagnosis: " + r.getDiagnosis() +
+//                            " Treatment: " + r.getDetails()
+//            );
+//        }
+//
+//        Map<Integer,Integer> appointments = retrieve.getTotalAppointmentsPerDoctor();
+//
+//        for (Integer doctorId : appointments.keySet()) {
+//
+//            System.out.println(
+//                    "Doctor ID: " + doctorId +
+//                            " Total Appointments: " +
+//                            appointments.get(doctorId)
+//            );
+//        }
+//
+//        Map<String,Integer> doctors = retrieve.getDoctorsAndPatientsCount();
+//
+//        for (String name : doctors.keySet()) {
+//
+//            System.out.println(
+//                    name + " has " +
+//                            doctors.get(name) +
+//                            " patients"
+//            );
+//        }
 
-        RetrieveData retrieve = new RetrieveData();
-        List<Patients> patients = retrieve.getPatientsByDoctor(1);
-
-        for (Patients p : patients) {
-            System.out.println(
-                    p.getFirstName() + " " +
-                            p.getLastName() + " " +
-                            p.getEmail()
-            );
-        }
-
-        List<MedicalRecords> records = retrieve.getMedicalRecordsByPatient(1);
-
-        for (MedicalRecords r : records) {
-            System.out.println(
-                    "Diagnosis: " + r.getDiagnosis() +
-                            " Treatment: " + r.getDetails()
-            );
-        }
-
-        Map<Integer,Integer> appointments = retrieve.getTotalAppointmentsPerDoctor();
-
-        for (Integer doctorId : appointments.keySet()) {
-
-            System.out.println(
-                    "Doctor ID: " + doctorId +
-                            " Total Appointments: " +
-                            appointments.get(doctorId)
-            );
-        }
-
-        Map<String,Integer> doctors = retrieve.getDoctorsAndPatientsCount();
-
-        for (String name : doctors.keySet()) {
-
-            System.out.println(
-                    name + " has " +
-                            doctors.get(name) +
-                            " patients"
-            );
-        }
-
-
+        UpdateDeleteData updateDelete = new UpdateDeleteData();
+        updateDelete.updateAppointmentStatus(1, "Completed");
     }
 }
