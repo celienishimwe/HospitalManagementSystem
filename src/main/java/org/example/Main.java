@@ -15,6 +15,8 @@ import org.example.Classes.Patients;
 import org.example.InterfaceImpl.InsertData;
 import org.example.InterfaceImpl.RetrieveData;
 import org.example.InterfaceImpl.UpdateDeleteData;
+import org.example.InterfaceImpl.OtherQueryImpl;
+import org.example.Interfaces.OtherQuery;
 
 public class Main {
     public static void main(String[] args) {
@@ -90,7 +92,29 @@ public class Main {
 //            );
 //        }
 
-        UpdateDeleteData updateDelete = new UpdateDeleteData();
-        updateDelete.updateAppointmentStatus(1, "Completed");
+//        UpdateDeleteData updateDelete = new UpdateDeleteData();
+//        updateDelete.updateAppointmentStatus(1, "Completed");
+
+        OtherQuery otherQuery = new OtherQueryImpl();
+        List<String> doctors = otherQuery.getDoctorsWithMoreThanFivePatients();
+
+        for(String d : doctors){
+            System.out.println("Doctor: " + d);
+        }
+
+        List<Integer> patients = otherQuery.getPatientsDiagnosedMoreThanOnce();
+
+        for(Integer p : patients){
+            System.out.println("Patient ID: " + p);
+        }
+
+        Map<String,Integer> appointments = otherQuery.getAppointmentsPerMonth();
+
+        for(String month : appointments.keySet()){
+
+            System.out.println(
+                    month + " -> " + appointments.get(month) + " appointments"
+            );
+        }
     }
 }
