@@ -6,6 +6,7 @@ import org.example.Classes.MedicalRecords;
 import org.example.Classes.Patients;
 import org.example.Config.DatabaseConnection;
 import org.example.Interfaces.InsertInterface;
+import org.springframework.beans.factory.annotation.Autowired;
 
 
 import java.sql.Connection;
@@ -15,14 +16,15 @@ import java.sql.Statement;
 
 public class InsertData implements InsertInterface {
 
+    @Autowired
+    Connection connection;
+
     @Override
     public void insertDoctor(Doctors doctors) {
 
         String sql = "INSERT INTO doctors(first_name,last_name,speciality,phone_number,email) VALUES(?,?,?,?,?)";
 
         try {
-            DatabaseConnection databaseConnection= new DatabaseConnection();
-            Connection connection = databaseConnection.connection();
             PreparedStatement ps = connection.prepareStatement(sql);
 
             ps.setString(1, doctors.getFirstName());
@@ -40,15 +42,12 @@ public class InsertData implements InsertInterface {
         }
     }
 
-    DatabaseConnection databaseConnection= new DatabaseConnection();
-
     @Override
     public void insertPatient(Patients patients) {
 
         String sql = "INSERT INTO patients(first_name,last_name,date_of_birth,gender,phone_number,email) VALUES(?,?,?,?,?,?)";
 
         try {
-            Connection connection = databaseConnection.connection();
             PreparedStatement ps = connection.prepareStatement(sql);
 
             ps.setString(1, patients.getFirstName());
@@ -73,8 +72,6 @@ public class InsertData implements InsertInterface {
         String sql = "INSERT INTO appointments(doctor_id,patient_id,appointment_date,status) VALUES(?,?,?,?)";
 
         try {
-            Connection connection = databaseConnection.connection();
-
             PreparedStatement ps = connection.prepareStatement(sql);
 
             ps.setInt(1, appointment.getDoctorId());
@@ -97,8 +94,6 @@ public class InsertData implements InsertInterface {
         String sql = "INSERT INTO medical_records(patient_id,diagnosis,treatment,doctor_id) VALUES(?,?,?,?)";
 
         try {
-            Connection connection = databaseConnection.connection();
-
             PreparedStatement ps = connection.prepareStatement(sql);
 
             ps.setInt(1, medicalRecords.getPatiendId());

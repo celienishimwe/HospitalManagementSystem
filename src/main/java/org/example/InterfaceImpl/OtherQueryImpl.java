@@ -2,12 +2,17 @@ package org.example.InterfaceImpl;
 
 import org.example.Interfaces.OtherQuery;
 import org.example.Config.DatabaseConnection;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.*;
 public class OtherQueryImpl implements OtherQuery {
+
+          @Autowired
+          Connection connection;
+
         @Override
         public List<String> getDoctorsWithMoreThanFivePatients() {
 
@@ -22,9 +27,6 @@ public class OtherQueryImpl implements OtherQuery {
                 """;
 
             try {
-
-                DatabaseConnection databaseConnection = new DatabaseConnection();
-                Connection connection = databaseConnection.connection();
 
                 Statement st = connection.createStatement();
                 ResultSet rs = st.executeQuery(sql);
@@ -54,10 +56,6 @@ public class OtherQueryImpl implements OtherQuery {
                 """;
 
             try {
-
-                DatabaseConnection databaseConnection = new DatabaseConnection();
-                Connection connection = databaseConnection.connection();
-
                 Statement st = connection.createStatement();
                 ResultSet rs = st.executeQuery(sql);
 
@@ -86,10 +84,6 @@ public class OtherQueryImpl implements OtherQuery {
                 """;
 
             try {
-
-                DatabaseConnection databaseConnection = new DatabaseConnection();
-                Connection connection = databaseConnection.connection();
-
                 Statement st = connection.createStatement();
                 ResultSet rs = st.executeQuery(sql);
 

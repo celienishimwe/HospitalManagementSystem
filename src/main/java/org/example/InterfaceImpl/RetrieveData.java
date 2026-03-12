@@ -2,6 +2,7 @@ package org.example.InterfaceImpl;
 import org.example.Classes.MedicalRecords;
 import org.example.Classes.Patients;
 import org.example.Config.DatabaseConnection;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,6 +15,8 @@ import java.util.Map;
 
 public class RetrieveData implements org.example.Interfaces.RetrieveData {
 
+    @Autowired
+    Connection connection;
 
     @Override
     public List<Patients> getPatientsByDoctor(int doctorId) {
@@ -28,8 +31,6 @@ public class RetrieveData implements org.example.Interfaces.RetrieveData {
             """;
 
         try {
-            DatabaseConnection databaseConnection= new DatabaseConnection();
-            Connection connection = databaseConnection.connection();
             PreparedStatement ps = connection.prepareStatement(sql);
 
             ps.setInt(1, doctorId);
@@ -65,8 +66,6 @@ public class RetrieveData implements org.example.Interfaces.RetrieveData {
         String sql = "SELECT * FROM medical_records WHERE patient_id=?";
 
         try {
-            DatabaseConnection databaseConnection= new DatabaseConnection();
-            Connection connection = databaseConnection.connection();
             PreparedStatement ps = connection.prepareStatement(sql);
 
             ps.setInt(1, patientId);
@@ -104,9 +103,6 @@ public class RetrieveData implements org.example.Interfaces.RetrieveData {
             """;
 
         try {
-
-            DatabaseConnection databaseConnection= new DatabaseConnection();
-            Connection connection = databaseConnection.connection();
             Statement st = connection.createStatement();
 
             ResultSet rs = st.executeQuery(sql);
@@ -138,9 +134,6 @@ public class RetrieveData implements org.example.Interfaces.RetrieveData {
             """;
 
         try {
-
-            DatabaseConnection databaseConnection = new DatabaseConnection();
-            Connection connection = databaseConnection.connection();
 
             Statement st = connection.createStatement();
 

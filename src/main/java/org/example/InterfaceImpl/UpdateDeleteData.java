@@ -2,11 +2,15 @@ package org.example.InterfaceImpl;
 
 import org.example.Config.DatabaseConnection;
 import org.example.Interfaces.UpdateDeleteInterface;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
 public class UpdateDeleteData implements UpdateDeleteInterface {
+
+    @Autowired
+    Connection connection;
 
     @Override
     public void updateAppointmentStatus(int appointmentId, String status) {
@@ -14,10 +18,6 @@ public class UpdateDeleteData implements UpdateDeleteInterface {
         String sql = "UPDATE appointments SET status=? WHERE id=?";
 
         try {
-
-            DatabaseConnection databaseConnection = new DatabaseConnection();
-            Connection connection = databaseConnection.connection();
-
             PreparedStatement ps = connection.prepareStatement(sql);
 
             ps.setString(1, status);
@@ -38,10 +38,6 @@ public class UpdateDeleteData implements UpdateDeleteInterface {
         String sql = "DELETE FROM patients WHERE id=?";
 
         try {
-
-            DatabaseConnection databaseConnection = new DatabaseConnection();
-            Connection connection = databaseConnection.connection();
-
             PreparedStatement ps = connection.prepareStatement(sql);
 
             ps.setInt(1, patientId);
