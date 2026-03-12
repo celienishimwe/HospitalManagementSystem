@@ -1,7 +1,6 @@
 package org.example;
 
-import org.example.Classes.Appointment;
-import org.example.Classes.CreateTables;
+import org.example.Classes.*;
 import org.example.Config.DatabaseConnection;
 
 import java.sql.SQLException;
@@ -9,9 +8,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.example.Classes.Appointment;
-import org.example.Classes.Doctors;
-import org.example.Classes.MedicalRecords;
-import org.example.Classes.Patients;
 import org.example.InterfaceImpl.InsertData;
 import org.example.InterfaceImpl.RetrieveData;
 import org.example.InterfaceImpl.UpdateDeleteData;
@@ -95,26 +91,29 @@ public class Main {
 //        UpdateDeleteData updateDelete = new UpdateDeleteData();
 //        updateDelete.updateAppointmentStatus(1, "Completed");
 
-        OtherQuery otherQuery = new OtherQueryImpl();
-        List<String> doctors = otherQuery.getDoctorsWithMoreThanFivePatients();
-
-        for(String d : doctors){
-            System.out.println("Doctor: " + d);
-        }
-
-        List<Integer> patients = otherQuery.getPatientsDiagnosedMoreThanOnce();
-
-        for(Integer p : patients){
-            System.out.println("Patient ID: " + p);
-        }
-
-        Map<String,Integer> appointments = otherQuery.getAppointmentsPerMonth();
-
-        for(String month : appointments.keySet()){
-
-            System.out.println(
-                    month + " -> " + appointments.get(month) + " appointments"
-            );
-        }
+//        OtherQuery otherQuery = new OtherQueryImpl();
+//        List<String> doctors = otherQuery.getDoctorsWithMoreThanFivePatients();
+//
+//        for(String d : doctors){
+//            System.out.println("Doctor: " + d);
+//        }
+//
+//        List<Integer> patients = otherQuery.getPatientsDiagnosedMoreThanOnce();
+//
+//        for(Integer p : patients){
+//            System.out.println("Patient ID: " + p);
+//        }
+//
+//        Map<String,Integer> appointments = otherQuery.getAppointmentsPerMonth();
+//
+//        for(String month : appointments.keySet()){
+//
+//            System.out.println(
+//                    month + " -> " + appointments.get(month) + " appointments"
+//            );
+//        }
+//
+        createAppointmentDateIndex indexData = new createAppointmentDateIndex();
+        indexData.CreateAppointmentDateIndex();
     }
 }
