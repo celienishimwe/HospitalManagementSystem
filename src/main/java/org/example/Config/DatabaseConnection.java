@@ -1,9 +1,12 @@
 package org.example.Config;
 
+import org.springframework.stereotype.Component;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+@Component
 public class DatabaseConnection {
 
     String url = "jdbc:postgresql://localhost:5432/HospitalManagement";

@@ -3,10 +3,13 @@ package org.example.InterfaceImpl;
 import org.example.Config.DatabaseConnection;
 import org.example.Interfaces.UpdateDeleteInterface;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
+
+@Repository
 public class UpdateDeleteData implements UpdateDeleteInterface {
 
     @Autowired

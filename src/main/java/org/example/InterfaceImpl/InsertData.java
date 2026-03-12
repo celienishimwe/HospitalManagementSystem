@@ -7,6 +7,7 @@ import org.example.Classes.Patients;
 import org.example.Config.DatabaseConnection;
 import org.example.Interfaces.InsertInterface;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 
 import java.sql.Connection;
@@ -14,6 +15,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+@Repository
 public class InsertData implements InsertInterface {
 
     @Autowired

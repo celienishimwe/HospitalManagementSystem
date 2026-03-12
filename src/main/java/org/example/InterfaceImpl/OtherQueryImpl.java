@@ -3,11 +3,14 @@ package org.example.InterfaceImpl;
 import org.example.Interfaces.OtherQuery;
 import org.example.Config.DatabaseConnection;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.*;
+
+@Repository
 public class OtherQueryImpl implements OtherQuery {
 
           @Autowired
