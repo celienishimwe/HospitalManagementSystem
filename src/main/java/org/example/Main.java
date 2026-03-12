@@ -13,6 +13,8 @@ import org.example.InterfaceImpl.RetrieveData;
 import org.example.InterfaceImpl.UpdateDeleteData;
 import org.example.InterfaceImpl.OtherQueryImpl;
 import org.example.Interfaces.OtherQuery;
+import org.example.Services.HospitalManagementService;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class Main {
     public static void main(String[] args) {
@@ -113,7 +115,9 @@ public class Main {
 //            );
 //        }
 //
-        createAppointmentDateIndex indexData = new createAppointmentDateIndex();
-        indexData.CreateAppointmentDateIndex();
+//        createAppointmentDateIndex indexData = new createAppointmentDateIndex();
+//        indexData.CreateAppointmentDateIndex();
+
+
     }
 }
