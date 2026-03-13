@@ -119,5 +119,37 @@ public class Main {
 //        indexData.CreateAppointmentDateIndex();
 
 
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext("org.example");
+
+
+        HospitalManagementService service = context.getBean(HospitalManagementService.class);
+
+
+        Doctors doctor = new Doctors("Celie", "Nishimwe", "Dentist", "0780000000", "celienishimwe@gmail.com");
+        service.addDoctor(doctor);
+
+
+        Patients patient = new Patients("Alice", "Gihozo", "2000-05-10", "Female", "0781111111", "alicegihozo@gmail.com");
+        service.addPatient(patient);
+
+
+        service.updateAppointmentStatus(1, "Completed");
+
+
+        service.deletePatient(2);
+
+
+        List<String> doctors = service.getDoctorsWithMoreThanFivePatients();
+        for (String doctorName : doctors) {
+            System.out.println("Doctor: " + doctorName);
+        }
+
+
+        List<Patients> patients = service.getPatientsByDoctor(1);
+
+        for (Patients p : patients) {
+            System.out.println(p.getFirstName() + " " + p.getLastName());
+        }
+        context.close();
     }
 }
